@@ -426,7 +426,7 @@
       <workItem from="1561636626725" duration="6486000" />
       <workItem from="1566274524026" duration="7643000" />
       <workItem from="1567652854943" duration="6398000" />
-      <workItem from="1574386730938" duration="3275000" />
+      <workItem from="1574386730938" duration="3350000" />
     </task>
     <task id="LOCAL-00001" summary="add git ignore">
       <created>1574387395951</created>
@@ -463,11 +463,18 @@
       <option name="project" value="LOCAL" />
       <updated>1574390619100</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="commit for workspace">
+      <created>1574390930440</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1574390930440</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40124000" />
+    <option name="totallyTimeSpent" value="40199000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="22" width="1936" height="1066" extended-state="6" />
@@ -526,7 +533,8 @@
     <MESSAGE value="remove .idea/*" />
     <MESSAGE value="remove *.iml 2" />
     <MESSAGE value="remove *.iml" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove *.iml" />
+    <MESSAGE value="commit for workspace" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit for workspace" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

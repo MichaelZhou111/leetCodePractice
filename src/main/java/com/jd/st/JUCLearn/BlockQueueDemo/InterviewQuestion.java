@@ -1,5 +1,6 @@
 package com.jd.st.JUCLearn.BlockQueueDemo;
 
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.IntStream;
@@ -14,14 +15,30 @@ import java.util.stream.IntStream;
 public class InterviewQuestion {
 
     class Resource {
-        private int i = 0;
+        volatile private AtomicInteger i = new AtomicInteger(0);
          Lock lock = new ReentrantLock();
-        public void increacement() {
-            System.out.println("increase i" +  (i++));
+        public void increase() {
+            try {
+                while (!lock.tryLock()) {
+                }
+                System.out.println(Thread.currentThread().getName()+"\t 当前值是:"+ i.incrementAndGet());
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                lock.unlock();
+            }
         }
 
-        public void decreacement() {
-            System.out.println("decrease i "+(i--));
+        public void descrease() {
+            try {
+                while (!lock.tryLock()) {
+                }
+                System.out.println(Thread.currentThread().getName()+"\t 当前值是:"+ i.decrementAndGet());
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                lock.unlock();
+            }
         }
 
     }
@@ -33,36 +50,17 @@ public class InterviewQuestion {
 
         void lockWay(){
             Resource resource = new Resource();
-
                 new Thread( () -> {
                     System.out.println(Thread.currentThread().getName() + "\t is running...");
                     IntStream.range(0, 5).forEach((x) -> {
-                        System.out.println(Thread.currentThread().getName() + "\t is running..."+x);
-                        try {
-                            if (resource.lock.tryLock()) {
-                                resource.increacement();
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        } finally {
-                            resource.lock.unlock();
-                        }
+                        resource.increase();
                     });
                 },"AAA").start();
 
             new Thread( () -> {
                 System.out.println(Thread.currentThread().getName() + "\t is running...");
                 IntStream.range(0, 5).forEach((x) -> {
-                    System.out.println(Thread.currentThread().getName() + "\t is running..."+x);
-                    try {
-                        if (resource.lock.tryLock()) {
-                            resource.decreacement();
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    } finally {
-                        resource.lock.unlock();
-                    }
+                    resource.descrease();
                 });
             },"BBB").start();
 
